@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bb7c88af-c5a8-4c93-96b5-178262ff210d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:64669/Time.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Time.xsd" MetadataType="Schema" ID="e055f853-6c8f-4850-bad2-4f98edaf534a" SourceId="1" SourceUrl="http://localhost:64669/Time.svc?xsd=xsd0" />
+    <MetadataFile FileName="Time.wsdl" MetadataType="Wsdl" ID="5caea0e9-1f6e-4a08-bda2-c0769c5f7799" SourceId="1" SourceUrl="http://localhost:64669/Time.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="Time1.xsd" MetadataType="Schema" ID="03c9531f-edff-4d79-ae4e-cc0d22700510" SourceId="1" SourceUrl="http://localhost:64669/Time.svc?xsd=xsd1" />
+    <MetadataFile FileName="Time1.wsdl" MetadataType="Wsdl" ID="0d4eb6f3-0752-43a8-b1d6-8f43e8778388" SourceId="1" SourceUrl="http://localhost:64669/Time.svc?wsdl" />
+    <MetadataFile FileName="Time.disco" MetadataType="Disco" ID="61d34c85-cfd0-4a08-91be-d1929382a238" SourceId="1" SourceUrl="http://localhost:64669/Time.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
