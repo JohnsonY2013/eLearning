@@ -54,6 +54,13 @@ namespace WCF.REST.Client
                 allEmployees = proxy.GetAll();
                 Array.ForEach(allEmployees.ToArray(), employee => Console.WriteLine(employee.ToString()));
 
+                Console.WriteLine("\n修改员工（003）姓名：");
+                proxy.UpdateInfo("003", "新的姓名003");
+
+                Console.WriteLine("所有员工列表：");
+                allEmployees = proxy.GetAll();
+                Array.ForEach(allEmployees.ToArray(), employee => Console.WriteLine(employee.ToString()));
+                
                 Console.WriteLine("\n删除员工（003）信息：");
                 proxy.Delete("003");
                 Console.WriteLine("所有员工列表：");
