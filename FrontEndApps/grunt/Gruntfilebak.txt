@@ -1,0 +1,91 @@
+module.exports = function(grunt) {
+
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        concat: {
+            options: {
+                separator: ';'
+            },
+            dist: {
+                src: ['src/!**!/!*.js'],
+                dest: 'dist/<%= pkg.name %>.js'
+            }
+        },
+/*        uglify: {
+            options: {
+                banner: '/!*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> *!/\n'
+            },
+            dist: {
+                files: {
+                    'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+                }
+            }
+        },*/
+        uglify: {
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            },
+            buildall: {
+                options: {
+                    mangle: true,
+                    compress: {
+                        drop_console: true
+                    },
+                    report: "min"   //输出压缩率
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'src',     //源目录
+                    src: '**/*.js', //所有js文件
+                    dest: 'dist'    //输出目录
+                }]
+            }
+        },
+        qunit: {
+            files: ['test/**/*.html']
+        },
+        connect:{
+            server: {
+                port: 3000,
+                base: '.'
+            }
+        },
+        jshint: {
+            files: ['src/**/*.js', 'test/**/*.js'],
+            options: {
+                //这里是覆盖JSHint默认配置的选项
+                globals: {
+                    jQuery: true,
+                    console: true,
+                    module: true,
+                    document: true
+                }
+            }
+        },
+        watch: {
+            scripts:{
+                files: ['src/**/*.js'],
+                task: ['minall'],
+                options: {
+                    spawn: true,
+                    interrupt: true
+                }
+            }
+/*            files: ['<%= jshint.files %>'],
+            tasks: ['jshint', 'qunit']*/
+        }
+    });
+
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+
+    grunt.registerTask('minall', ['uglify', 'buildall']);
+    grunt.registerTask('unittest', ['connect', 'qunit']);
+    grunt.registerTask('test', ['jshint', 'qunit']);
+    grunt.registerTask('full', ['jshint', 'qunit', 'concat', 'uglify']);
+    grunt.registerTask('default', ['concat', 'uglify']);
+};

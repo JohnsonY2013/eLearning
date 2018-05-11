@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>W3Cschool(w3cschool.cn)</title>
+</head>
+
+<body>
+
+  <!--<datalist> 标签需要与 <input> 标签配合使用，用来表示可选的列表。-->
+  <form action="/statics/demosource/demo-form.php" method="get">
+    <input list="browsers" name="browser" />
+    <datalist id="browsers">
+      <option value="Internet Explorer" />
+      <option value="Firefox" />
+      <option value="Chrome" />
+      <option value="Opera" />
+      <option value="Safari" />
+    </datalist>
+    <input type="submit" />
+  </form>
+
+  <p>
+    <strong>注意:</strong> Internet Explorer 9（更早IE版本），Safari不支持 datalist 标签。</p>
+
+</body>
+
+</html>

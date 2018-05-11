@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>W3Cschool(w3cschool.cn)</title>
+</head>
+
+<body>
+
+    <canvas id="myCanvas" style="border:1px solid #c3c3c3;">你的浏览器不支持 HTML5 canvas 标签。</canvas>
+
+    <script>
+        var c = document.getElementById('myCanvas');
+        var ctx = c.getContext('2d');
+        ctx.fillStyle = '#FF0000';
+        ctx.fillRect(0, 0, 80, 100);
+    </script>
+
+
+    <!-- <div></div> -->
+    <canvas id="myCanvas2" width="200" height="100" style="border:1px solid #000000;">
+    </canvas>
+
+
+    <canvas id="myCanvas3" width="200" height="100" style="border:1px solid #d3d3d3;">
+        您的浏览器不支持 HTML5 canvas 标签。</canvas>
+    <script>
+
+        var c = document.getElementById("myCanvas3");
+        var ctx = c.getContext("2d");
+        ctx.moveTo(0, 0);
+        ctx.lineTo(200, 100);
+        ctx.stroke();
+
+    </script>
+
+
+    <canvas id="myCanvas4" width="200" height="100" style="border:1px solid #d3d3d3;">
+        您的浏览器不支持 HTML5 canvas 标签。</canvas>
+    <script>
+
+        var c = document.getElementById("myCanvas4");
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(100, 50, 40, 0, 2 * Math.PI);
+        ctx.stroke();
+    </script>
+
+    <canvas id="myCanvas5" width="200" height="100" style="border:1px solid #d3d3d3;">
+        您的浏览器不支持 HTML5 canvas 标签。</canvas>
+    <script>
+
+        var c = document.getElementById("myCanvas5");
+        var ctx = c.getContext("2d");
+        ctx.font = "30px Arial";
+        ctx.fillText("Hello World", 10, 40);
+        ctx.strokeText("Hello World", 10, 90);
+        ctx.moveTo(0, 50);
+        ctx.lineTo(200, 50);
+        ctx.stroke();
+
+    </script>
+
+    <canvas id="myCanvas6" width="200" height="100" style="border:1px solid #d3d3d3;">
+        您的浏览器不支持 HTML5 canvas 标签。</canvas>
+    <script>
+
+        var c = document.getElementById("myCanvas6");
+        var ctx = c.getContext("2d");
+
+        // Create gradient
+        var grd = ctx.createLinearGradient(0, 0, 200, 0);
+        grd.addColorStop(0, "red");
+        grd.addColorStop(1, "white");
+
+        // Fill with gradient
+        ctx.fillStyle = grd;
+        ctx.fillRect(10, 10, 180, 80);
+
+    </script>
+
+    <canvas id="myCanvas7" width="200" height="100" style="border:1px solid #d3d3d3;">
+        您的浏览器不支持 HTML5 canvas 标签。</canvas>
+    <script>
+
+        var c = document.getElementById("myCanvas7");
+        var ctx = c.getContext("2d");
+
+        // Create gradient
+        var grd = ctx.createRadialGradient(100, 50, 5, 90, 60, 100);
+        grd.addColorStop(0, "red");
+        grd.addColorStop(1, "white");
+
+        // Fill with gradient
+        ctx.fillStyle = grd;
+        ctx.fillRect(10, 10, 160, 80);
+    </script>
+
+    <div></div>
+
+    <p>Image to use:</p>
+    <img id="scream" src="https://www.w3cschool.cn/attachments/image/20160224/1456314599613373.jpg" alt="The Scream">
+    <p>Canvas:</p>
+    <canvas id="myCanvas8" width="250" height="300" style="border:1px solid #d3d3d3;">
+        您的浏览器不支持 HTML5 canvas 标签。</canvas>
+    <script>
+
+        var c = document.getElementById("myCanvas8");
+        var ctx = c.getContext("2d");
+        var img = document.getElementById("scream");
+
+        img.onload = function () {
+            ctx.drawImage(img, 10, 10);
+        } 
+    </script>
+
+<div></div>
+
+    
+
+</body>
+
+</html>

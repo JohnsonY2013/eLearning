@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Blockchain - 区块链示例</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/blockchain.css">
+    <link rel="stylesheet" href="css/ladda-themeless.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/lib/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/lib/sha256.js"></script>
+    <script src="js/lib/spin.min.js"></script>
+    <script src="js/lib/ladda.min.js"></script>
+    <script src="js/blockchain.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">区块链演示</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="hash.html">哈希</a>
+                        </li>
+                        <li class="active">
+                            <a href="block.html">区块</a>
+                        </li>
+                        <li>
+                            <a href="blockchain.html">区块链</a>
+                        </li>
+                        <li>
+                            <a href="distributed.html">分布式</a>
+                        </li>
+                        <li>
+                            <a href="token.html">口令</a>
+                        </li>
+                        <li>
+                            <a href="coinbase.html">币基础</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Block</h1>
+        <div id="block1chain1well" class="well well-success">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="block1chain1number" class="col-sm-2 control-label">区块：</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">#</span>
+                            <input type="text" class="form-control" id="block1chain1number" value="1" onkeyup="updateHash(1, 1)">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="block1chain1nonce" class="col-sm-2 control-label">随机数：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="block1chain1nonce" value="72608" onkeyup="updateHash(1, 1)" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="block1chain1data" class="col-sm-2 control-label">数据：</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="5" id="block1chain1data" placeholder="请输入数据..." onkeyup="updateHash(1, 1)"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="block1chain1hash" class="col-sm-2 control-label">哈希：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="block1chain1hash" disabled/>
+                    </div>
+                </div>
+                <!-- <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button id='block1chain1mineButton' class="btn btn-primary ladda-button" data-style="expand-right">
+                            <span class="ladda-label">Mine</span>
+                            <span class="ladda-spinner"></span>
+                            <div class="ladda-progress" style="width: 0px;"></div>
+                        </button>
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <i class="icon-spinner icon-spin icon-large"></i>
+                    </div>
+                    <div class="col-sm-10">
+                        <button id="block1chain1mineButton" data-style="expand-right" class="btn btn-primary ladda-button">
+                            <span class="ladda-label">Mine</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        $(function () {
+            mineButtonAnimation(1, 1);
+            updateHash(1, 1);
+        });
+
+        //$('#block' + 1 + 'chain' + 1 + 'hash').val(sha256(1, 1));
+        //取区块所有信息
+        function getText(block, chain) {
+            return $('#block' + block + 'chain' + chain + 'number').val() +
+                $('#block' + block + 'chain' + chain + 'nonce').val() +
+                $('#block' + block + 'chain' + chain + 'data').val();
+        }
+
+        function mineButtonAnimation(block, chain) {
+            $('#block' + block + 'chain' + chain + 'mineButton').click(function (e) {
+                e.preventDefault();
+                var l = Ladda.create(this);
+                l.start();
+                setTimeout(function () {
+                    mine(block, chain, false);
+                    l.stop();
+                }, 250); // give UI time to update
+            });
+        }
+    </script>
+
+</body>
+
+</html>

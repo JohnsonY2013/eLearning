@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>W3Cschool(w3cschool.cn)</title>
+</head>
+
+<body>
+
+    <canvas id="myCanvas9" width="500" height="500" style="border:1px solid #000000;">
+        您的浏览器不支持 HTML5 canvas 标签。</canvas>
+    <script>
+
+        var c = document.getElementById("myCanvas9");
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+
+        //http://www.php.cn/html5-tutorial-353336.html
+        //设置是个顶点的坐标，根据顶点制定路径  
+
+        for (var i = 0; i < 5; i++) {
+
+            var x = Math.cos((18 + i * 72) / 180 * Math.PI) * 40 + 100;
+            var y = -Math.sin((18 + i * 72) / 180 * Math.PI) * 40 + 100;
+            ctx.lineTo(x, y);
+
+            x = Math.cos((54 + i * 72) / 180 * Math.PI) * 16 + 100;
+            y = -Math.sin((54 + i * 72) / 180 * Math.PI) * 16 + 100;
+            ctx.lineTo(x, y);
+        }
+
+        ctx.closePath();
+        //设置边框样式以及填充颜色 
+        ctx.lineWidth = "3";
+        ctx.fillStyle = "#F6F152";
+        ctx.strokeStyle = "#F5270B";
+        ctx.fill();
+        ctx.stroke()
+    </script>
+
+</body>
+
+</html>

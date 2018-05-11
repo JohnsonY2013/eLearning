@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Blockchain - 区块链示例</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-horizon.css">
+    <link rel="stylesheet" href="css/blockchain.css">
+    <link rel="stylesheet" href="css/ladda-themeless.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/lib/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/lib/sha256.js"></script>
+    <script src="js/lib/spin.min.js"></script>
+    <script src="js/lib/ladda.min.js"></script>
+    <script src="js/blockchain.js"></script>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">区块链演示</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="hash.html">哈希</a>
+                        </li>
+                        <li>
+                            <a href="block.html">区块</a>
+                        </li>
+                        <li class="active">
+                            <a href="blockchain.html">区块链</a>
+                        </li>
+                        <li>
+                            <a href="distributed.html">分布式</a>
+                        </li>
+                        <li>
+                            <a href="token.html">口令</a>
+                        </li>
+                        <li>
+                            <a href="coinbase.html">币基础</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <h1>Blockchain</h1>
+        <div class="row row-horizon">
+            <div class="col-xs-7">
+                <div id="block1chain1well" class="well well-success">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="block1chain1number" class="col-sm-2 control-label">区块：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">#</span>
+                                    <input type="text" class="form-control" id="block1chain1number" value="1" onkeyup="updateChain(1, 1)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block1chain1nonce" class="col-sm-2 control-label">随机数：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block1chain1nonce" value="11316" onkeyup="updateChain(1, 1)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block1chain1data" class="col-sm-2 control-label">数据：</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5" id="block1chain1data" placeholder="请输入数据..." onkeyup="updateChain(1, 1)"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block1chain1previous" class="col-sm-2 control-label">前区块：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block1chain1previous" value="0000000000000000000000000000000000000000000000000000000000000000"
+                                    disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block1chain1hash" class="col-sm-2 control-label">哈希：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block1chain1hash" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <i class="icon-spinner icon-spin icon-large"></i>
+                            </div>
+                            <div class="col-sm-10">
+                                <button id="block1chain1mineButton" data-style="expand-right" class="btn btn-primary ladda-button">
+                                    <span class="ladda-label">Mine</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-xs-7">
+                <div id="block2chain1well" class="well well-success">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="block2chain1number" class="col-sm-2 control-label">区块：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">#</span>
+                                    <input type="text" class="form-control" id="block2chain1number" value="2" onkeyup="updateChain(2, 1)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block2chain1nonce" class="col-sm-2 control-label">随机数：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block2chain1nonce" value="35230" onkeyup="updateChain(2, 1)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block2chain1data" class="col-sm-2 control-label">数据：</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5" id="block2chain1data" placeholder="请输入数据..." onkeyup="updateChain(2, 1)"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block2chain1previous" class="col-sm-2 control-label">前区块：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block2chain1previous" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block2chain1hash" class="col-sm-2 control-label">哈希：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block2chain1hash" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <i class="icon-spinner icon-spin icon-large"></i>
+                            </div>
+                            <div class="col-sm-10">
+                                <button id="block2chain1mineButton" data-style="expand-right" class="btn btn-primary ladda-button">
+                                    <span class="ladda-label">Mine</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-xs-7">
+                <div id="block3chain1well" class="well well-success">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="block3chain1number" class="col-sm-2 control-label">区块：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">#</span>
+                                    <input type="text" class="form-control" id="block3chain1number" value="3" onkeyup="updateChain(3, 1)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block3chain1nonce" class="col-sm-2 control-label">随机数：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block3chain1nonce" value="12937" onkeyup="updateChain(3, 1)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block3chain1data" class="col-sm-2 control-label">数据：</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5" id="block3chain1data" placeholder="请输入数据..." onkeyup="updateChain(3, 1)"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block3chain1previous" class="col-sm-2 control-label">前区块：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block3chain1previous" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block3chain1hash" class="col-sm-2 control-label">哈希：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block3chain1hash" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <i class="icon-spinner icon-spin icon-large"></i>
+                            </div>
+                            <div class="col-sm-10">
+                                <button id="block3chain1mineButton" data-style="expand-right" class="btn btn-primary ladda-button">
+                                    <span class="ladda-label">Mine</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-xs-7">
+                <div id="block4chain1well" class="well well-success">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="block4chain1number" class="col-sm-2 control-label">区块：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">#</span>
+                                    <input type="text" class="form-control" id="block4chain1number" value="4" onkeyup="updateChain(4, 1)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block4chain1nonce" class="col-sm-2 control-label">随机数：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block4chain1nonce" value="35990" onkeyup="updateChain(4, 1)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block4chain1data" class="col-sm-2 control-label">数据：</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5" id="block4chain1data" placeholder="请输入数据..." onkeyup="updateChain(4, 1)"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block4chain1previous" class="col-sm-2 control-label">前区块：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block4chain1previous" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block4chain1hash" class="col-sm-2 control-label">哈希：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block4chain1hash" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <i class="icon-spinner icon-spin icon-large"></i>
+                            </div>
+                            <div class="col-sm-10">
+                                <button id="block4chain1mineButton" data-style="expand-right" class="btn btn-primary ladda-button">
+                                    <span class="ladda-label">Mine</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-xs-7">
+                <div id="block5chain1well" class="well well-success">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="block5chain1number" class="col-sm-2 control-label">区块：</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">#</span>
+                                    <input type="text" class="form-control" id="block5chain1number" value="5" onkeyup="updateChain(5, 1)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block5chain1nonce" class="col-sm-2 control-label">随机数：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block5chain1nonce" value="56265" onkeyup="updateChain(5, 1)" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block5chain1data" class="col-sm-2 control-label">数据：</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5" id="block5chain1data" placeholder="请输入数据..." onkeyup="updateChain(5, 1)"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block5chain1previous" class="col-sm-2 control-label">前区块：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block5chain1previous" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="block5chain1hash" class="col-sm-2 control-label">哈希：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="block5chain1hash" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-2">
+                                <i class="icon-spinner icon-spin icon-large"></i>
+                            </div>
+                            <div class="col-sm-10">
+                                <button id="block5chain1mineButton" data-style="expand-right" class="btn btn-primary ladda-button">
+                                    <span class="ladda-label">Mine</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        $(function () {
+
+            for (var i = 1; i <= 5; i++) {
+                setup(i, 1);
+            }
+        });
+
+        //取区块所有信息
+        function getText(block, chain) {
+            return $('#block' + block + 'chain' + chain + 'number').val() +
+                $('#block' + block + 'chain' + chain + 'nonce').val() +
+                $('#block' + block + 'chain' + chain + 'data').val() +
+                $('#block' + block + 'chain' + chain + 'previous').val();
+        }
+
+        function setup(block, chain) {
+            updateChain(block, chain);
+            $('#block' + block + 'chain' + chain + 'mineButton').click(function (e) {
+                e.preventDefault();
+                var l = Ladda.create(this);
+                l.start();
+                setTimeout(function () {
+                    mine(block, chain, true);
+                    l.stop();
+                }, 250); // give UI time to update
+            });
+        }
+    </script>
+</body>
+
+</html>
