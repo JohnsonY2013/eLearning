@@ -1,0 +1,9 @@
+
+.vs/
+.vscode/
+BinaryTree/.vs/BinaryTree/v16/.suo
+bin/
+obj/
+packages/
+node_modules/
+*.user

@@ -1,0 +1,15 @@
+CREATE DATABASE test;
+CREATE USER 'tester'@'localhost' IDENTIFIED BY 'tester';
+GRANT ALL PRIVILEGES ON test.* TO 'tester'@'localhost';
+ALTER USER 'tester'@'localhost' IDENTIFIED WITH mysql_native_password BY 'tester';
+
+create table pets (
+    id varchar(50) not null,
+    name varchar(100) not null,
+    gender bool not null,
+    birth varchar(10) not null,
+    createdAt bigint not null,
+    updatedAt bigint not null,
+    version bigint not null,
+    primary key (id)
+) engine=innodb;
